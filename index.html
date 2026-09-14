@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pure Metairony Powered Corporation</title>
+<meta name="description" content="Офіційна сторінка Pure Metairony Powered Corporation — компанії однієї людини, що випускає ігри з мета-іронічним присмаком.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --violet-1: #2A1B54;
+    --violet-2: #4B2A86;
+    --blue-1: #24337A;
+    --blue-2: #1A2450;
+    --orange: #FF5A36;
+    --orange-2: #FF8A3D;
+    --glass: rgba(255,255,255,0.07);
+    --glass-strong: rgba(255,255,255,0.12);
+    --border: rgba(255,255,255,0.14);
+    --text: #FFFFFF;
+    --text-soft: rgba(255,255,255,0.72);
+    --text-mute: rgba(255,255,255,0.46);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Manrope', system-ui, sans-serif;
+    color:var(--text);
+    background:
+      radial-gradient(circle at 15% 15%, rgba(255,90,54,0.16), transparent 40%),
+      radial-gradient(circle at 85% 75%, rgba(90,120,255,0.20), transparent 45%),
+      linear-gradient(135deg, var(--violet-1), var(--blue-1) 55%, var(--blue-2));
+    background-size:180% 180%, 180% 180%, 220% 220%;
+    animation:bgDrift 22s ease-in-out infinite alternate;
+    overflow-x:hidden;
+    line-height:1.6;
+  }
+  @keyframes bgDrift{
+    0%{background-position:0% 0%, 100% 100%, 0% 0%;}
+    100%{background-position:20% 30%, 70% 60%, 40% 60%;}
+  }
+  h1,h2,h3{margin:0;font-family:'Manrope',sans-serif;font-weight:800;letter-spacing:-0.01em;}
+  p{margin:0;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+
+  /* Floating blobs */
+  .blob{
+    position:fixed;
+    border-radius:50%;
+    filter:blur(80px);
+    opacity:0.35;
+    z-index:0;
+    pointer-events:none;
+  }
+  .blob-a{width:420px;height:420px;background:var(--orange);top:-120px;left:-100px;animation:float1 16s ease-in-out infinite;}
+  .blob-b{width:380px;height:380px;background:#5B6BFF;bottom:-140px;right:-100px;animation:float2 18s ease-in-out infinite;}
+  @keyframes float1{0%,100%{transform:translate(0,0);}50%{transform:translate(40px,60px);}}
+  @keyframes float2{0%,100%{transform:translate(0,0);}50%{transform:translate(-30px,-50px);}}
+
+  /* Nav */
+  nav{
+    position:sticky; top:0; z-index:10;
+    backdrop-filter:blur(16px);
+    background:rgba(20,16,50,0.35);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{
+    max-width:1120px;margin:0 auto;padding:14px 24px;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+  }
+  .brand{display:flex;align-items:center;gap:12px;}
+  .logo-mark{
+    width:38px;height:38px;border-radius:12px;
+    background:linear-gradient(135deg, var(--orange), var(--orange-2));
+    display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:14px;color:#1A1030;
+    flex:none;
+  }
+  .brand-name{font-weight:700;font-size:15px;}
+  .nav-links{display:flex;gap:6px;}
+  .nav-links a{
+    padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;
+    color:var(--text-soft); transition:background 0.2s, color 0.2s;
+  }
+  .nav-links a:hover{background:var(--glass-strong); color:var(--text);}
+  @media (max-width:640px){ .nav-links{display:none;} }
+
+  /* Hero */
+  .hero{
+    position:relative; z-index:1;
+    padding:88px 24px 60px;
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:40px;
+    align-items:center;
+  }
+  @media (max-width:860px){ .hero{grid-template-columns:1fr; padding-top:56px;} }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--glass); border:1px solid var(--border);
+    padding:7px 14px;border-radius:999px;
+    font-size:13px;color:var(--text-soft);font-weight:600;
+    margin-bottom:22px;
+  }
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);}
+  .hero h1{font-size:clamp(32px,5vw,50px);line-height:1.12;}
+  .hero h1 span{
+    background:linear-gradient(100deg, var(--orange), #FFC15E);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero p.lead{margin-top:22px;font-size:17px;color:var(--text-soft);max-width:52ch;}
+  .cta-row{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:13px 24px;border-radius:12px;font-size:14.5px;font-weight:700;
+    transition:transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg, var(--orange), var(--orange-2));
+    color:#1A1030; box-shadow:0 10px 30px -8px rgba(255,90,54,0.55);
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 14px 34px -6px rgba(255,90,54,0.65);}
+  .btn-ghost{
+    background:var(--glass); border:1px solid var(--border); color:var(--text);
+  }
+  .btn-ghost:hover{background:var(--glass-strong); transform:translateY(-2px);}
+
+  /* Hero star badge */
+  .badge-wrap{position:relative; display:flex; align-items:center; justify-content:center; min-height:340px;}
+  .star{
+    width:230px;height:230px;
+    animation:spinSlow 30s linear infinite;
+  }
+  @keyframes spinSlow{ to{ transform:rotate(360deg); } }
+  .star-center{
+    position:absolute; text-align:center;
+  }
+  .star-num{font-size:64px;font-weight:800; line-height:1;}
+  .star-label{font-size:12px;color:var(--text-mute); margin-top:6px; letter-spacing:0.04em;}
+  .float-stat{
+    position:absolute; text-align:center;
+    background:var(--glass); border:1px solid var(--border);
+    padding:10px 14px; border-radius:14px; backdrop-filter:blur(10px);
+    animation:bob 5s ease-in-out infinite;
+  }
+  .float-stat .n{font-size:19px;font-weight:800;}
+  .float-stat .l{font-size:10.5px;color:var(--text-mute); margin-top:2px;}
+  .fs-1{top:0; left:6%; animation-delay:0s;}
+  .fs-2{top:8%; right:0; animation-delay:0.8s;}
+  .fs-3{bottom:6%; left:0; animation-delay:1.6s;}
+  .fs-4{bottom:0; right:8%; animation-delay:2.4s;}
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+  @media (max-width:640px){ .float-stat{display:none;} }
+
+  /* Sections */
+  .section{position:relative;z-index:1;padding:60px 24px;}
+  .section-head{max-width:640px; margin-bottom:34px;}
+  .section-head .kicker{font-size:13px;font-weight:700;color:var(--orange-2); margin-bottom:8px;}
+  .section-head h2{font-size:clamp(24px,3vw,32px);}
+  .section-head p{color:var(--text-soft); margin-top:10px; font-size:15px;}
+
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity 0.6s ease, transform 0.6s ease;}
+  .reveal.in-view{opacity:1; transform:translateY(0);}
+
+  /* Stat row */
+  .stats-row{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+  @media (max-width:700px){ .stats-row{grid-template-columns:1fr;} }
+  .stat-card{
+    background:var(--glass); border:1px solid var(--border); border-radius:18px;
+    padding:22px; backdrop-filter:blur(10px);
+    transition:transform 0.2s ease, background 0.2s ease;
+  }
+  .stat-card:hover{transform:translateY(-4px); background:var(--glass-strong);}
+  .stat-card.orange{background:linear-gradient(135deg, var(--orange), var(--orange-2)); color:#1A1030; border:none;}
+  .stat-card .icon{font-size:20px;margin-bottom:10px;}
+  .stat-card .label{font-size:13px; opacity:0.75; font-weight:600;}
+  .stat-card .value{font-size:30px;font-weight:800;margin-top:4px;}
+
+  /* Disclaimer chip */
+  .disclaimer{
+    display:flex; gap:12px; align-items:flex-start;
+    background:rgba(255,90,54,0.1); border:1px solid rgba(255,90,54,0.35);
+    border-radius:16px; padding:16px 18px; margin-bottom:28px;
+    font-size:14px; color:var(--text-soft);
+  }
+  .disclaimer .mark{font-size:18px; flex:none;}
+
+  /* Product cards */
+  .products{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  @media (max-width:700px){ .products{grid-template-columns:1fr;} }
+  .product-card{
+    background:var(--glass); border:1px solid var(--border); border-radius:20px;
+    padding:24px; backdrop-filter:blur(10px);
+    transition:transform 0.25s ease, border 0.25s ease, background 0.25s ease;
+  }
+  .product-card:hover{
+    transform:translateY(-6px);
+    border-color:rgba(255,138,61,0.5);
+    background:var(--glass-strong);
+  }
+  .product-top{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px;}
+  .product-icon{width:58px;height:58px;border-radius:16px;overflow:hidden;flex:none;border:1px solid var(--border);}
+  .product-icon img{width:100%;height:100%;object-fit:cover;}
+  .product-title{font-size:17px;font-weight:800;}
+  .product-sub{font-size:12.5px;color:var(--text-mute);margin-top:2px;}
+  .product-card p.desc{font-size:14.5px;color:var(--text-soft);margin-bottom:18px;}
+
+  /* Bylaws */
+  .bylaws{display:flex;flex-direction:column;gap:14px;}
+  .bylaw{
+    display:flex; gap:16px; align-items:flex-start;
+    background:var(--glass); border:1px solid var(--border); border-radius:16px;
+    padding:18px 20px; backdrop-filter:blur(10px);
+    transition:transform 0.2s ease;
+  }
+  .bylaw:hover{transform:translateX(4px);}
+  .bylaw .badge{
+    width:34px;height:34px;border-radius:10px; flex:none;
+    background:linear-gradient(135deg, var(--orange), var(--orange-2));
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:800;color:#1A1030;
+  }
+  .bylaw p{font-size:14.5px;color:var(--text-soft);}
+  .bylaw strong{color:var(--text);}
+
+  /* Contact */
+  .contact-card{
+    display:flex; gap:30px; align-items:center; flex-wrap:wrap;
+    background:var(--glass); border:1px solid var(--border); border-radius:22px;
+    padding:32px; backdrop-filter:blur(10px);
+  }
+  .seal{
+    width:110px;height:110px;border-radius:50%; flex:none;
+    background:conic-gradient(from 180deg, var(--orange), #FFC15E, var(--orange));
+    display:flex;align-items:center;justify-content:center;
+    animation:spinSlow 14s linear infinite;
+    box-shadow:0 0 40px -6px rgba(255,90,54,0.5);
+  }
+  .seal-inner{
+    width:82px;height:82px;border-radius:50%; background:var(--blue-2);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    animation:spinSlow 14s linear infinite reverse;
+  }
+  .seal-inner b{font-size:20px;font-weight:800;}
+  .seal-inner span{font-size:9px;color:var(--text-mute);}
+  .contact-text{flex:1; min-width:220px;}
+  .contact-text p{color:var(--text-soft); font-size:15px; margin-bottom:14px;}
+  .signature{font-size:13.5px; color:var(--text-mute); font-style:italic; margin-bottom:18px;}
+  .contact-buttons{display:flex;gap:10px;flex-wrap:wrap;}
+
+  footer{
+    position:relative;z-index:1;
+    text-align:center; padding:30px 24px 40px;
+    color:var(--text-mute); font-size:13px;
+    border-top:1px solid var(--border);
+    margin-top:20px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+    body{animation:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="blob blob-a"></div>
+<div class="blob blob-b"></div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="brand">
+      <div class="logo-mark">PM</div>
+      <div class="brand-name">Pure Metairony Powered Corporation</div>
+    </div>
+    <div class="nav-links">
+      <a href="#products">Продукти</a>
+      <a href="#philosophy">Філософія</a>
+      <a href="#contact">Контакти</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div>
+    <div class="eyebrow"><span class="dot"></span> Установчий акт № 001 · Вінниця, Україна</div>
+    <h1>Один засновник.<br>Нуль акціонерів.<br><span>Необмежена мета-іронія.</span></h1>
+    <p class="lead">Компанія повного циклу: придумуємо гру, пишемо код, тестуємо на собі, а тоді самі ж лишаємо собі відгук на 5 зірок. Робимо це для душі — але документообіг ведемо так, ніби нас щохвилини перевіряє податкова.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#products">Дивитись ігри</a>
+      <a class="btn btn-ghost" href="#contact">Зв'язатись</a>
+    </div>
+  </div>
+  <div class="badge-wrap">
+    <svg class="star" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100,10 C130,10 128,35 150,32 C170,30 175,55 195,65 C178,80 190,100 190,100 C190,100 178,120 195,135 C175,145 170,170 150,168 C128,165 130,190 100,190 C70,190 72,165 50,168 C30,170 25,145 5,135 C22,120 10,100 10,100 C10,100 22,80 5,65 C25,55 30,30 50,32 C72,35 70,10 100,10 Z"
+        fill="none" stroke="rgba(255,138,61,0.55)" stroke-width="2"/>
+    </svg>
+    <div class="star-center">
+      <div class="star-num">1</div>
+      <div class="star-label">ЗАСНОВНИК</div>
+    </div>
+    <div class="float-stat fs-1"><div class="n">2</div><div class="l">ІГРИ</div></div>
+    <div class="float-stat fs-2"><div class="n">214</div><div class="l">БАГІВ ЗАКРИТО</div></div>
+    <div class="float-stat fs-3"><div class="n">∞</div><div class="l">ЧАШОК КАВИ</div></div>
+    <div class="float-stat fs-4"><div class="n">0</div><div class="l">СКАРГ ВІД РАДИ</div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap stats-row reveal">
+    <div class="stat-card orange">
+      <div class="icon">🏆</div>
+      <div class="label">Внутрішня оцінка</div>
+      <div class="value">5.0 ★</div>
+    </div>
+    <div class="stat-card">
+      <div class="icon">🎮</div>
+      <div class="label">Ігор випущено</div>
+      <div class="value">2</div>
+    </div>
+    <div class="stat-card">
+      <div class="icon">📋</div>
+      <div class="label">Років у бізнесі</div>
+      <div class="value">5</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="products">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">Стаття I</div>
+      <h2>Продуктова лінійка</h2>
+    </div>
+
+    <div class="disclaimer reveal">
+      <span class="mark">⚠️</span>
+      <p><strong>Юридичне застереження:</strong> обидві гри вийшли до офіційного заснування корпорації. Наш відділ ретроактивного визнання авторства (тобто ми ж, тільки в іншому светрі) визнав це технічною деталлю та заднім числом прийняв обидва релізи до реєстру.</p>
+    </div>
+
+    <div class="products reveal">
+      <div class="product-card">
+        <div class="product-top">
+          <div class="product-icon">
+            <img src="https://play-lh.googleusercontent.com/TZ5IDkbGMZiy2_h0Y7ZZfbly-3FH2suWvmg0IjP1o8sgLovN3sO3HqU1ZxEHGIzg7fTBbzA8bK1mgBRm9YQgFio=w240-h240" alt="Іконка Level Up, Brain Down">
+          </div>
+          <div>
+            <div class="product-title">Level Up, Brain Down</div>
+            <div class="product-sub">Board Games Helper</div>
+          </div>
+        </div>
+        <p class="desc">Лічильник очок для тих, хто прийшов у Munchkin чи Gwent псувати стосунки, а не рахувати. Рахуємо замість вас — ображатись доведеться самостійно.</p>
+        <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.chornyi.levelupbraindown" target="_blank" rel="noopener">Встановити в Google Play</a>
+      </div>
+
+      <div class="product-card">
+        <div class="product-top">
+          <div class="product-icon">
+            <img src="https://play-lh.googleusercontent.com/CIHto2H9WufTQ9pPeSzW1pLzR87n_mIdQOxX21W8xweeQhLdus-WuBSGEO5fdQIEgbOz6DSsJzsH4G_8YyGcNA=w240-h240" alt="Іконка Brain.exe">
+          </div>
+          <div>
+            <div class="product-title">Brain.exe</div>
+            <div class="product-sub">Queens, Tango &amp; Zip</div>
+          </div>
+        </div>
+        <p class="desc">Три головоломки, загорнуті в чорний гумор. Рівні, досвід, рейтинг — і жодного співчуття, коли ви застрягнете на третій хвилині.</p>
+        <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.chornyi.brainexestopped" target="_blank" rel="noopener">Встановити в Google Play</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="philosophy">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">Стаття II</div>
+      <h2>Корпоративна філософія</h2>
+    </div>
+    <div class="bylaws reveal">
+      <div class="bylaw">
+        <div class="badge">2.1</div>
+        <p><strong>Штат:</strong> одна особа. Плинність кадрів — 0%. Внутрішні конфлікти — щодня, але виключно із самим собою.</p>
+      </div>
+      <div class="bylaw">
+        <div class="badge">2.2</div>
+        <p><strong>Місія:</strong> перетворювати нудні механіки — підрахунок очок, судоку, логіку — на привід посміятись за столом чи посваритись з другом.</p>
+      </div>
+      <div class="bylaw">
+        <div class="badge">2.3</div>
+        <p><strong>Дивіденди:</strong> статутом не передбачені. Задоволення від того, що хтось поставив 5 зірок о 2 ночі — передбачене повністю.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">Стаття III</div>
+      <h2>Офіційна печатка та контакти</h2>
+    </div>
+    <div class="contact-card reveal">
+      <div class="seal">
+        <div class="seal-inner">
+          <b>PM</b>
+          <span>EST. 2026</span>
+        </div>
+      </div>
+      <div class="contact-text">
+        <p>Головний, єдиний і незамінний співробітник — Євгеній Чорний. Питання, баги, скарги, освідчення в коханні до Gwent-режиму — все на пошту.</p>
+        <div class="signature">/підпис/ Є. Чорний, засновник</div>
+        <div class="contact-buttons">
+          <a class="btn btn-ghost" href="mailto:ua.evgen.chorny@gmail.com">Написати на пошту</a>
+          <a class="btn btn-ghost" href="https://play.google.com/store/apps/developer?id=Pure+Metairony+Powered+Studio" target="_blank" rel="noopener">Всі релізи в Google Play</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Pure Metairony Powered Corporation. Усі права захищені (нами самими).
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); } });
+  }, {threshold:0.15});
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
